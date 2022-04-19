@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <style>
+            body {
+              background-image: url('38580.jpg');
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              background-size: cover;
+              
+            }
+            </style>
+
+    </head>
+
+    <body>
+        
+      
+        <form action="#" onsubmit="onsignup(event)">
+
+            <label> Name </label>
+            <input type="text" name="username"  required/>
+           <br> 
+           <br>
+            <label> Email</label>
+             
+            <input type="email" name="email" required/>
+             <br>
+             <br> 
+                 
+            <label> password</label>
+
+            <input type="password" name="password" required/>
+
+            <button> Sign Up </button>
+
+        </form>
+
+        <script>
+
+            function onsignup(event) {
+
+                event.preventDefault();
+
+                console.log(event.target.username.value)
+
+                
+
+            }
+
+        </script>
+
+    </body>
+
+</html>
+
