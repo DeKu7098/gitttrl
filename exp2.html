@@ -13,14 +13,16 @@
             <input id='desc' type="text" name="descId"  required/>
 
             <label for="cat"> Choose a Category </label>
-              <select name="cat" id="cat">
+            <input id='cat' type="text" name="cat" />
+            
+              <select id="cat1">
                 <option value="fuel">fuel</option>
                 <option value="movie">movie</option>
-                <option value="elec" selected>Electricty</option>
+                <option value="elec">Electricty</option>
                 <option value="diesel">Diesel</option>
               </select>
 
-            <input id='cat' type="text" name="cat" />
+            
 
             <button> Submit </button>
 
@@ -94,11 +96,11 @@ if(localStorage.getItem(user.desc) !== null){
 
 const parentNode = document.getElementById('listOfUsers');
 
-                const childHTML = `<li id=${user.desc}> ${user.expense} - ${user.desc}
+                const childHTML = `<li id=${user.desc} > ${user.expense} - ${user.desc} - ${user.cat}
 
                                         <button onclick=deleteUser('${user.desc}')> Delete User </button>
 
-                                        <button onclick=editUserDetails('${user.desc}','${user.expense}','${user.cat}')> Edit User </button>
+                                        <button onclick=editUserDetails('${user.desc}' , '${user.expense}' , '${user.cat}')> Edit User </button>
 
                                      </li>`
 
