@@ -1,0 +1,163 @@
+<html>
+
+    <body>
+
+        <form  onsubmit="saveToLocalStorage(event)">
+
+            <label> Expense Amount </label>
+
+            <input id='expense' type="text" name="expense"  required/>
+
+            <label> Choose Description </label>
+
+            <input id='desc' type="text" name="descId"  required/>
+
+            <label> Choose a Category </label>
+
+            <input id='cat' type="text" name="cat" />
+
+            <button> Submit </button>
+
+        </form>
+
+        <ul id='listOfUsers'></ul>
+
+        <script>
+
+            function saveToLocalStorage(event) {
+
+                event.preventDefault();
+
+                const expense = event.target.expense.value;
+
+                const desc = event.target.descId.value;
+
+                const cat = event.target.cat.value;
+
+                const obj = {
+
+                    expense,
+
+                    desc,
+
+                    cat
+
+                }
+
+                localStorage.setItem(obj.email, JSON.stringify(obj))
+
+                showNewUserOnScreen(obj)
+
+            }
+
+            window.addEventListener("DOMContentLoaded", () => {
+
+             const localStorageObj = localStorage;
+
+             const localstoragekeys  = Object.keys(localStorageObj)
+
+
+
+for(var i = 0; i< localstoragekeys.length; i++){
+
+    const key = localstoragekeys[i]
+
+    const userDetailsString = localStorageObj[key];
+
+    const userDetailsObj = JSON.parse(userDetailsString);
+
+    showNewUserOnScreen(userDetailsObj)
+
+}
+
+})
+
+function showNewUserOnScreen(user){
+
+document.getElementById('desc').value = '';
+
+document.getElementById('expense').value = '';
+
+document.getElementById('cat').value ='';
+
+if(localStorage.getItem(user.desc) !== null){
+
+    removeUserFromScreen(user.desc)
+
+}
+
+const parentNode = document.getElementById('listOfUsers');
+
+                const childHTML = `<li id=${user.desc}> ${user.expense} - ${user.desc}
+
+                                        <button onclick=deleteUser('${user.desc}')> Delete User </button>
+
+                                        <button onclick=editUserDetails('${user.desc}','${user.expense}','${user.cat}')> Edit User </button>
+
+                                     </li>`
+
+
+
+                parentNode.innerHTML = parentNode.innerHTML + childHTML;
+
+            }
+
+            //Edit User
+
+
+
+            function editUserDetails(descId, expense, cat){
+
+
+
+                document.getElementById('desc').value = descId;
+
+                document.getElementById('expense').value = expense;
+
+                document.getElementById('cat').value = cat;
+
+
+
+            deleteUser(descId)
+
+}
+
+// deleteUser
+
+
+
+function deleteUser(descId){
+
+console.log(descId)
+
+localStorage.removeItem(descId);
+
+removeUserFromScreen(descId);
+
+
+
+}
+
+function removeUserFromScreen(descId){
+
+const parentNode = document.getElementById('listOfUsers');
+
+const childNodeToBeDeleted = document.getElementById(descId);
+
+if(childNodeToBeDeleted) {
+
+    parentNode.removeChild(childNodeToBeDeleted)
+
+}
+
+}
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
