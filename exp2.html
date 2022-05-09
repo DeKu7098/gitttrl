@@ -12,7 +12,13 @@
 
             <input id='desc' type="text" name="descId"  required/>
 
-            <label> Choose a Category </label>
+            <label for="cat"> Choose a Category </label>
+              <select name="cat" id="cat">
+                <option value="fuel">fuel</option>
+                <option value="movie">movie</option>
+                <option value="elec" selected>Electricty</option>
+                <option value="diesel">Diesel</option>
+              </select>
 
             <input id='cat' type="text" name="cat" />
 
@@ -44,7 +50,7 @@
 
                 }
 
-                localStorage.setItem(obj.email, JSON.stringify(obj))
+                localStorage.setItem(obj.desc, JSON.stringify(obj))
 
                 showNewUserOnScreen(obj)
 
